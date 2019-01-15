@@ -1,0 +1,24 @@
+{
+  "name": "fis3-static-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "shx rm -rf ../dist && fis3 release dev -w -d ../dist",
+	  "server": "sudo fis3 server start --type browsersync --root ../dist --bs-config bs-config.js",
+	  "clear": "shx rm -rf ../dist",
+	  "stop": "sudo fis3 server stop --type --bs-config bs-config.js && shx rm -rf ../dist",
+	  "build": "fis3 release build -d ../build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmllein/fis3-static-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xmllein/fis3-static-demo/issues"
+  },
+  "homepage": "https://github.com/xmllein/fis3-static-demo#readme"
+}
