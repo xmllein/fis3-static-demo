@@ -23,7 +23,9 @@ fis.match('**.html', {
 fis.match('*.{sass,scss}', {
   parser: fis.plugin('node-sass-latest', {}),
   postprocessor: fis.plugin('autoprefixer-latest', {
-    browsers: ['last 2 versions']
+    browsers: ['last 2 versions'],
+    "flexboxfixer": true,
+    "gradientfixer": true
   }),
   rExt: '.css'
 });
@@ -32,10 +34,14 @@ fis.match('*.{sass,scss}', {
 fis.match('*.less', {
   parser: fis.plugin('less-latest', {}),
   postprocessor: fis.plugin('autoprefixer-latest', {
-    browsers: ['last 2 versions']
+    browsers: ['last 2 versions'],
+    "flexboxfixer": true,
+    "gradientfixer": true
   }),
   rExt: '.css'
 });
+
+//使用 css next   可以配置 fis3-parser-css-next
 
 //=============开发模式=============//
 fis.media('dev').match('*.{js,scss,css,jpg,png,gif,html}',{
@@ -79,7 +85,7 @@ fis.media('build').match('*.{js,scss,css,jpg,png,gif}',{
 }).match('*.js', { // fis3-optimizer-uglifyjs
   optimizer: fis.plugin('uglifyjs', {})
 
-}).match('{bs-config.js, package.json, fis-conf.js, server.log, run.py, readme.md,commonHtml/**}',{ // 打包不发布文件
+}).match('{bs-config.js, package.json, fis-conf.js, server.log, run.py, readme.md,commonHtml/**,mock/**}',{ // 打包不发布文件
   release: false
 });
 

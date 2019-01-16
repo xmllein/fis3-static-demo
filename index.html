@@ -7,6 +7,12 @@
   <img class="primary" src="/static/images/me.jpg" alt="me">
 </div>
 
+<div>
+  <h2>mock test</h2>
+  <button id="mock-btn">测试mock</button>
+  <a href="/hello/redirect"> test redirect</a>
+  <button id="proxy-btn"> test proxy</button>
+</div>
 
 <div class="background-size">
   <h2>background-size 测试   sprite 测试</h2>
@@ -22,5 +28,33 @@
 <script>
   $(function () {
     $('h2').html('test htmlmin js');
-  })
+
+
+    $('#mock-btn').on('click',function () {
+      $.ajax('/test/mock',{
+        success:function (data) {
+          console.log(data);
+        },
+        fail:function (data) {
+          console.log(data);
+        }
+      })
+    });
+
+    $('#proxy-btn').on('click',function () {
+      $.ajax('/test/proxy',{
+        success:function (data) {
+          console.log(data);
+        },
+        fail:function (data) {
+          console.log(data);
+        }
+      })
+    });
+
+
+
+  });
+
+
 </script>

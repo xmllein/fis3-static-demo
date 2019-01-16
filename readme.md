@@ -25,6 +25,9 @@
   - `npm run build` 打包文件，生成`../build` 目录
   - mac 遇到权限问题`sudo chmod -R 777 /Users/$(whoami)/.fis3-tmp`
   
+- mock 支持 
+ - 支持 `rewrite`，`redirect`，`proxy`
+  
 - run.py 执行发布脚本
   - 运行`python run.py www` 自动生成代码 提交至 发布代码仓库
   - 参考发布仓库[fis3-static-demo-release](https://github.com/xmllein/fis3-static-demo-release)
