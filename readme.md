@@ -16,13 +16,14 @@
   - `npm i -g fis3-optimizer-cleancss` 优化压缩css
   - `npm i -g fis3-optimizer-uglifyjs` js 压缩
   - `npm i -g fis3-postpackager-cloader` 把零散的文件（css,js）合并
+  - `npm i -g fis3-deploy-skip-packed` 过滤掉已经被打包的资源
 
 - npm 任务
-  - `npm run dev` 删除已有`../dist`目录，生成新`../dist` 开发目录
+  - `npm run dev` 删除已有`./dev`目录，生成新`./dev` 开发目录
   - `npm run server` 开启开发`browsersync`服务器
-  - `npm run clear` 手动删除`../dist` 目录
+  - `npm run clear` 手动删除`./dev` 目录
   - `npm run stop` 关闭开发`browsersync`服务器
-  - `npm run build` 打包文件，生成`../build` 目录
+  - `npm run build` 打包文件，生成`./dist` 目录
   - mac 遇到权限问题`sudo chmod -R 777 /Users/$(whoami)/.fis3-tmp`
   
 - mock 支持 

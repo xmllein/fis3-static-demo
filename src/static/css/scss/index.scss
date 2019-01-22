@@ -14,27 +14,27 @@ $values: #ff0000, #00ff00, #0000ff;
 }
 
 .firefox {
-	background: url('/static/images/icon/Firefox.png?__sprite=group_z') no-repeat;
+	background: url('../../images/icon/Firefox.png?__sprite=group_z') no-repeat;
 	width: 256px;
 	height: 256px;
 	display: inline-block;
 }
 
 .chrome {
-	background: url('/static/images/icon/Chrome.png?__sprite=group_z') no-repeat;
+	background: url('../../images/icon/Chrome.png?__sprite=group_z') no-repeat;
 	width: 256px;
 	height: 256px;
 	display: inline-block;
 }
 .facebook {
-	background: url('/static/images/icon/Facebook.png?__sprite=group_x') no-repeat;
+	background: url('../../images/icon/Facebook.png?__sprite=group_x') no-repeat;
 	width: 256px;
 	height: 256px;
 	display: inline-block;
 }
 
 .facebook-right {
-	background: url('/static/images/icon/index-02-icon5.png?__sprite=group_x') no-repeat right top;
+	background: url('../../images/icon/index-02-icon5.png?__sprite=group_x') no-repeat right top;
 	width: 135px;
 	height: 135px;
 	display: inline-block;
@@ -43,6 +43,6 @@ $values: #ff0000, #00ff00, #0000ff;
 .big-image {
 	width: 135px;
 	height: 135px;
-	background: url('/static/images/icon/index-02-icon6.png?__sprite=group_x') no-repeat;
+	background: url('../../images/icon/index-02-icon6.png?__sprite=group_x') no-repeat;
 }
 

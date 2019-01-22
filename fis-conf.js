@@ -1,5 +1,21 @@
 fis.set('namespace','fis3-static-name');
 
+//======== 测试配置 ============//
+const  TEST_OUTPUT_PATH = './test'; // 测试包路径 （仅执行编译，不压缩）
+
+//======== 测试配置 ============//
+const  DEV_OUTPUT_PATH = './dev'; // 开发包路径 （仅执行编译，不压缩）
+
+//======== 线上包配置 ============//
+const FORMAL_OUTPUT_PATH = './dist'; // 正式打包路径（包含编译、压缩代码 、图片压缩、csssprite）
+
+
+// 常规配置  参考 http://fis.baidu.com/fis3/docs/api/config-props.html
+fis.set('project.files', ['src/**']); // 源码path
+fis.set('project.ignore', ['node_modules/**', 'dist/**', 'README.md', 'test/**', '.git/**', 'fis-conf.js']);
+fis.set('charset', 'utf-8');
+fis.set('project.charset', 'utf-8');
+
 fis.match('::packager', { // fis-spriter-csssprites-group
   spriter: fis.plugin('csssprites-group')
 });
@@ -43,12 +59,20 @@ fis.match('*.less', {
 
 //使用 css next   可以配置 fis3-parser-css-next
 
+fis.match(/^\/src\/(.*)$/i, {
+  release: "$1",
+  useCache: false
+});
+
 //=============开发模式=============//
 fis.media('dev').match('*.{js,scss,css,jpg,png,gif,html}',{
   useHash: false,
   useSprite: false, //true 开启图片 Sprite， 如果不想预览设置false
   optimizer: false,
-  release:'/$0'
+}).match('**', {
+  deploy: fis.plugin('local-deliver', {
+    to: DEV_OUTPUT_PATH
+  })
 });
 
 
@@ -57,7 +81,10 @@ fis.media('build').match('*.{js,scss,css,jpg,png,gif}',{
   useHash: true,
   useSprite: true,
   optimizer: true,
-  release:'/$0'
+
+}).match('lib/**.js', { // 库文件不加hash
+
+  useHash: false
 
 }).match('::packager', { // fis3-postpackager-cloader
   postpackager: fis.plugin('loader', {
@@ -87,6 +114,15 @@ fis.media('build').match('*.{js,scss,css,jpg,png,gif}',{
 
 }).match('{bs-config.js, package.json, fis-conf.js, server.log, run.py, readme.md,commonHtml/**,mock/**}',{ // 打包不发布文件
   release: false
+
+}).match('**', {
+  deploy: [
+    fis.plugin('skip-packed', {
+      // 配置项 过滤掉已被打包的文件
+    }), fis.plugin('local-deliver', {
+      to: FORMAL_OUTPUT_PATH
+    })
+  ]
 });
 
 

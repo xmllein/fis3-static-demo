@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "shx rm -rf ../dist && fis3 release dev -w -d ../dist",
-	  "server": "sudo fis3 server start --type browsersync --root ../dist --bs-config bs-config.js",
-	  "clear": "shx rm -rf ../dist",
-	  "stop": "sudo fis3 server stop --type --bs-config bs-config.js && shx rm -rf ../dist",
-	  "build": "fis3 release build -d ../build"
+    "dev": "shx rm -rf ./dev && fis3 release dev -w",
+	  "server": "sudo fis3 server start --type browsersync --root ./dev --bs-config bs-config.js",
+	  "clear": "shx rm -rf ./dev",
+	  "cbuild": "shx rm -rf ./dist",
+	  "stop": "sudo fis3 server stop --type --bs-config bs-config.js && shx rm -rf ./dev",
+	  "build": "fis3 release build"
   },
   "repository": {
     "type": "git",

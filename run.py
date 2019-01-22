@@ -34,7 +34,7 @@ def getGitBranch():
 def releaseOnline():
     print 'release to fis3-static-demo-release start...'
     # 打包存放临时目录
-    bakTmp = '../build'
+    bakTmp = './dist'
 
     # 进行打包编译
     cmd = 'npm run build'
@@ -68,7 +68,7 @@ def releaseOnline():
     os.chdir(currPath)
     cmd = 'rm -rf ' + feRelease
     exeCmd(cmd)
-    cmd = 'sudo rm -rf ' + bakTmp
+    cmd = 'rm -rf ' + bakTmp
     exeCmd(cmd)
 
     print 'release to fis3-static-demo-release end'
