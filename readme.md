@@ -32,6 +32,11 @@
 - run.py 执行发布脚本
   - 运行`python run.py www` 自动生成代码 提交至 发布代码仓库
   - 参考发布仓库[fis3-static-demo-release](https://github.com/xmllein/fis3-static-demo-release)
+
+### changelog
+#### 2018-01-28
+- 增加 fis3-postpackager-query-x 配置
+
   
   
   

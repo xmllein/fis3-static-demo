@@ -57,6 +57,22 @@ fis.match('*.less', {
   rExt: '.css'
 });
 
+// 设置占位符,监听编译时需要设置固定的query才能捕获到进行替换
+let query = '?v=123456798';
+
+// 应用占位符
+fis.match('*', {
+  query: query
+});
+
+// 基本用法
+fis.match('::package', {
+  // 默认query为md5
+  postpackager : fis.plugin('query', {
+    placeholder: query // 这里传入占位符
+  })
+});
+
 //使用 css next   可以配置 fis3-parser-css-next
 
 fis.match(/^\/src\/(.*)$/i, {
@@ -84,7 +100,7 @@ fis.media('build').match('*.{js,scss,css,jpg,png,gif}',{
 
 }).match('lib/**.js', { // 库文件不加hash
 
-  useHash: false
+  useHash: true
 
 }).match('::packager', { // fis3-postpackager-cloader
   postpackager: fis.plugin('loader', {
