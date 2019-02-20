@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "shx rm -rf ./dev && fis3 release dev -w",
+    "start": "shx rm -rf ./dev && fis3 release dev -w",
 	  "server": "sudo fis3 server start --type browsersync --root ./dev --bs-config bs-config.js",
 	  "clear": "shx rm -rf ./dev",
 	  "cbuild": "shx rm -rf ./dist",

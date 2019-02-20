@@ -1,13 +1,26 @@
-fis.set('namespace','fis3-static-name');
+fis.set('namespace', 'fis3-static-name');
 
 //======== 测试配置 ============//
-const  TEST_OUTPUT_PATH = './test'; // 测试包路径 （仅执行编译，不压缩）
+const TEST_OUTPUT_PATH = './test'; // 测试包路径 （仅执行编译，不压缩）
 
 //======== 测试配置 ============//
-const  DEV_OUTPUT_PATH = './dev'; // 开发包路径 （仅执行编译，不压缩）
+const DEV_OUTPUT_PATH = './dev'; // 开发包路径 （仅执行编译，不压缩）
 
 //======== 线上包配置 ============//
 const FORMAL_OUTPUT_PATH = './dist'; // 正式打包路径（包含编译、压缩代码 、图片压缩、csssprite）
+
+function add0(m) {
+  return m < 10 ? '0' + m : m
+}
+
+//时间戳转化成时间格式
+function timeFormat(timestamp) {
+  //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+  let time = new Date(timestamp);
+  let year = time.getFullYear(), month = time.getMonth() + 1, date = time.getDate(),
+    hours = time.getHours(), minutes = time.getMinutes(), seconds = time.getSeconds();
+  return year + add0(month) + add0(date) + add0(hours) + add0(minutes) + add0(seconds);
+}
 
 
 // 常规配置  参考 http://fis.baidu.com/fis3/docs/api/config-props.html
@@ -58,19 +71,11 @@ fis.match('*.less', {
 });
 
 // 设置占位符,监听编译时需要设置固定的query才能捕获到进行替换
-let query = '?v=123456798';
+let query = '?v=' + timeFormat(Date.now());
 
-// 应用占位符
+// 应用占位符 可以参考使用 fis3-postpackager-query
 fis.match('*', {
   query: query
-});
-
-// 基本用法
-fis.match('::package', {
-  // 默认query为md5
-  postpackager : fis.plugin('query', {
-    placeholder: query // 这里传入占位符
-  })
 });
 
 //使用 css next   可以配置 fis3-parser-css-next
@@ -81,7 +86,7 @@ fis.match(/^\/src\/(.*)$/i, {
 });
 
 //=============开发模式=============//
-fis.media('dev').match('*.{js,scss,css,jpg,png,gif,html}',{
+fis.media('dev').match('*.{js,scss,css,jpg,png,gif,html}', {
   useHash: false,
   useSprite: false, //true 开启图片 Sprite， 如果不想预览设置false
   optimizer: false,
@@ -93,7 +98,7 @@ fis.media('dev').match('*.{js,scss,css,jpg,png,gif,html}',{
 
 
 //=============打包模式=============//
-fis.media('build').match('*.{js,scss,css,jpg,png,gif}',{
+fis.media('build').match('*.{js,scss,css,jpg,png,gif}', {
   useHash: true,
   useSprite: true,
   optimizer: true,
@@ -104,31 +109,31 @@ fis.media('build').match('*.{js,scss,css,jpg,png,gif}',{
 
 }).match('::packager', { // fis3-postpackager-cloader
   postpackager: fis.plugin('loader', {
-      allInOne: {
-        js: function (file) {
-          return "/static/js/" + file.filename + "_aio.js";
-        },
-        css: function (file) {
-          return "/static/css/" + file.filename + "_aio.css";
-        }
+    allInOne: {
+      js: function (file) {
+        return "/static/js/" + file.filename + "_aio.js";
+      },
+      css: function (file) {
+        return "/static/css/" + file.filename + "_aio.css";
       }
-    })
-}).match('*.html',{ // fis3-optimizer-htmlmin
-  optimizer: fis.plugin('htmlmin',{
+    }
+  })
+}).match('*.html', { // fis3-optimizer-htmlmin
+  optimizer: fis.plugin('htmlmin', {
     jsmin: true
   })
 
 }).match('::image', { // fis3-optimizer-imagemin
   optimizer: fis.plugin('imagemin', {})
 
-}).match('*.{css,scss,sass,less}',{ //fis3-optimizer-cleancss
-  optimizer: fis.plugin('cleancss',{}),
+}).match('*.{css,scss,sass,less}', { //fis3-optimizer-cleancss
+  optimizer: fis.plugin('cleancss', {}),
 
 
 }).match('*.js', { // fis3-optimizer-uglifyjs
   optimizer: fis.plugin('uglifyjs', {})
 
-}).match('{bs-config.js, package.json, fis-conf.js, server.log, run.py, readme.md,commonHtml/**,mock/**}',{ // 打包不发布文件
+}).match('{bs-config.js, package.json, fis-conf.js, server.log, run.py, readme.md,commonHtml/**,mock/**}', { // 打包不发布文件
   release: false
 
 }).match('**', {

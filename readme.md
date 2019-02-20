@@ -19,7 +19,7 @@
   - `npm i -g fis3-deploy-skip-packed` 过滤掉已经被打包的资源
 
 - npm 任务
-  - `npm run dev` 删除已有`./dev`目录，生成新`./dev` 开发目录
+  - `npm start` 删除已有`./dev`目录，生成新`./dev` 开发目录
   - `npm run server` 开启开发`browsersync`服务器
   - `npm run clear` 手动删除`./dev` 目录
   - `npm run stop` 关闭开发`browsersync`服务器
@@ -34,8 +34,12 @@
   - 参考发布仓库[fis3-static-demo-release](https://github.com/xmllein/fis3-static-demo-release)
 
 ### changelog
+#### 2018-02-20
+- 增加 修改package.json `npm run dev` 修改为 `npm start`
 #### 2018-01-28
 - 增加 fis3-postpackager-query-x 配置
+
+
 
   
   
