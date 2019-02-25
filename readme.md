@@ -1,7 +1,10 @@
 ### fis3-static-demo
 
 ### 环境搭建
-- node环境 `8.14.0`
+- node环境 `8.14.0` `mac 10.14.2`
+- windows **环境问题**
+  - `fis-spriter-csssprites-group` 无效，mac系统没有此问题
+  - `npm run server` 启动时会报错 `TypeError: "value" argument must not be a number`,只要`dev` 目录存在`server.log` 就行 然后打开浏览器`localhost:8080`. mac系统没有此问题
 - 使用依赖包:
   - `npm i -g fis3` 全局安装最新版fis3
   - `npm i -g shx` shell执行包
